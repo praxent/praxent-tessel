@@ -1,6 +1,13 @@
 var uploadImage = require('tessel-camera-s3');
 var http = require('http');
 
+var tessel = require('tessel');
+var camera = require('camera-vc0706').use(tessel.port.A);
+var climate = require('climate-si7020').use(tessel.port.B);
+
+var blueLED = tessel.led[1];
+var redLED = tessel.led[2];
+
 var s3Config = {
   key:'AKIAJ3IDS2XTRQXZWRZQ',
   secret:'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',
@@ -8,10 +15,14 @@ var s3Config = {
 };
 
 module.exports = {
+
+  // Take a picture, flashes the red LED to notify.
   takePicture: function() {
     redLED.high();
     camera.takePicture();
   },
+
+  // Upload a picture from the camera to S3.
   uploadPicture: function(picture) {
     redLED.low();
     blueLED.high();
@@ -22,6 +33,8 @@ module.exports = {
       blueLED.low();
     });
   },
+
+  // Send climate data to the server.
   sendClimate: function() {
     climate.readTemperature('f', function (err, temp) {
       climate.readHumidity(function (err, humid) {
@@ -44,4 +57,5 @@ module.exports = {
       })
     });
   }
+
 }

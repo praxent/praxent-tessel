@@ -4,9 +4,6 @@ var tessel = require('tessel');
 var camera = require('camera-vc0706').use(tessel.port.A);
 var climate = require('climate-si7020').use(tessel.port.B);
 
-var blueLED = tessel.led[1];
-var redLED = tessel.led[2];
-
 // Wait for the Climate module to be ready.
 climate.on('ready', function () {
 
