@@ -3,7 +3,7 @@ body {
 }
 
 .wrapper {
-    height: 800px;
+    min-height: 900px;
     background-image: url("./images/bee-bg.png");
     background-position: bottom;
     background-repeat: no-repeat;
@@ -13,13 +13,13 @@ body {
 .container {
     background: #fff;
     clear: both;
-    height: 800px;
+    min-height: 900px;
     margin: auto;
     width: 80%;
     position: relative;
 }
 
-h3 {
+h3, h4 {
     color: #4D4E4C;
 }
 
