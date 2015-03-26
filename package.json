@@ -4,12 +4,10 @@
   "description": "",
   "main": "camera.js",
   "dependencies": {
-    "express": "^4.12.3"
-  },
-  "devDependencies": {
     "camera-vc0706": "^0.1.7",
     "tessel": "^0.3.21"
   },
+  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/Ignigena/praxent-tessel.git"
