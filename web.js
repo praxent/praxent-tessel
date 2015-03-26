@@ -10,6 +10,12 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
+app.get('/climate', function(req, res) {
+  fs.readFile('public/climate.json', 'utf8', function read(err, data) {
+    res.send(data);
+  });
+});
+
 app.post('/climate', function (req, res) {
   var climate = {
     temp: req.headers.temp,
