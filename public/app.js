@@ -8,6 +8,6 @@ $(document).ready(function() {
 
         $(".live-image").attr("src", "https://s3.amazonaws.com/praxent/officeCurrent.jpg?"+d.getTime());
 
-    }, 10000);
+    }, 5000);
 
 });
