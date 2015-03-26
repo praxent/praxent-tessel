@@ -1,0 +1,16 @@
+{
+  "name": "praxent-tessel",
+  "version": "0.0.0",
+  "description": "",
+  "main": "camera.js",
+  "dependencies": {
+    "camera-vc0706": "^0.1.7",
+    "tessel": "^0.3.21"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ignigena/praxent-tessel.git"
+  },
+  "authors": ["Josh Gillespie","John Lund", "Albert Martin"]
+}
