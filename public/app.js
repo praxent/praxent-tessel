@@ -3,12 +3,12 @@ $(document).ready(function() {
 
     setInterval(function() {
         resetImage();
-    }, 5000);
+        checkClimate();
+    }, 10000);
 
     checkClimate();
 
     $(document).on('click', '.climate-check', function() {
-        console.log('checking');
         checkClimate();
     });
 
@@ -18,10 +18,8 @@ $(document).ready(function() {
 
     function checkClimate() {
 
-
         $.get("/climate", function (data) {
 
-            console.log('success', data);
             if (data !== "") {
                 var climate = JSON.parse(data);
                 $('.climate-message').hide();
@@ -29,7 +27,6 @@ $(document).ready(function() {
                 $('.temp').html(climate.temp.toString());
                 $('.humidity').html(climate.humidity.toString());
             } else {
-                console.log('error');
                 $('.climate').hide();
                 $('.climate-message').show();
             }

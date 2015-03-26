@@ -28,6 +28,10 @@ h3, h4 {
     max-width: 640px;
 }
 
+.footer-wrapper {
+    height: 100px;
+}
+
 .footer {
     background: #5F6062;
     padding: 20px;
