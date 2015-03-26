@@ -26,13 +26,13 @@ var snappy = {
     camera.takePicture();
   },
   uploadPicture: function(picture) {
+    redLED.low();
     blueLED.high();
     uploadImage(picture, 'officeCurrent.jpg', s3Config, function (err, res) {
       if (err)
         return console.log('Upload error:', err);
 
       console.log('Image was upload success!');
-      redLED.low();
       blueLED.low();
     });
   }
