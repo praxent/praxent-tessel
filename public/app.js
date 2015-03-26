@@ -5,20 +5,33 @@ $(document).ready(function() {
         resetImage();
     }, 5000);
 
-    $.get("/climate", function (data) {
-        var climate = JSON.parse(data);
+    checkClimate();
 
-        $('.temp').html(climate.temp);
-        $('.humidity').html(climate.humidity);
-
-        console.log('temp ', climate.temp);
-        console.log('humidity ', climate.humidity);
+    $(document).on('click', '.climate-check', function() {
+        console.log('checking');
+        checkClimate();
     });
 
     $(document).on('click', '.refresh', function() {
-        console.log('resetting');
         resetImage();
     });
+
+    function checkClimate() {
+
+        $.get("/climate", function (data) {
+            var climate = JSON.parse(data);
+
+            console.log('climate', climate);
+            if (climate) {
+                $('.climate-message').hide();
+                $('.temp').html(climate.temp);
+                $('.humidity').html(climate.humidity);
+            } else {
+                $('.climate').hide();
+                $('.climate-message').show();
+            }
+        });
+    }
 
     function resetImage() {
         var d = new Date();

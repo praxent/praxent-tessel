@@ -16,6 +16,7 @@
 
     <div class="small-12 columns">
       <img src="http://praxent.com/wp-content/uploads/header-praxent-logo.png">
+
       <div class="image-container">
 
         <div class="row">
@@ -26,8 +27,11 @@
 
         <div class="row">
           <h3>"Current" Office Conditions</h3>
-          <h4>Temp: <span class="temp"></span></h4>
-          <h4>Humidity: <span class="humidity"></span></h4>
+          <div class="climate">
+            <h4>Temp: <span class="temp"></span>&deg;</h4>
+            <h4>Humidity: <span class="humidity"></span>%</h4>
+          </div>
+          <div class="climate-message" style="display: none">No climate information available at this time. <a class="climate-check">Check Again</a></div>
         </div>
 
       </div>
