@@ -6,12 +6,30 @@ body {
 
 }
 
+.inner-container {
+    margin: 0 40px;
+}
+
 .container {
-    margin: 0px auto;
-    padding: 50px;
+    margin: 0 auto;
     height: 100%;
     width: 1000px;
     background: #fff;
+}
+
+.footer {
+    background: #5F6062;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+}
+
+.nomargin {
+    margin: 0;
+}
+
+.nopadding {
+    padding: 0;
 }
 
 .subtle {
