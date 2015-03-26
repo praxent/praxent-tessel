@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "camera-vc0706": "^0.1.7",
+    "climate-si7020": "^0.1.1",
     "tessel": "^0.3.21",
     "tessel-camera-s3": "^1.0.1"
   },
