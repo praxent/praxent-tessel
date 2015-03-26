@@ -14,36 +14,41 @@ var crypto = require('crypto');
 var blueLED = tessel.led[1];
 var redLED = tessel.led[2];
 
-// Wait for the camera module to say it's ready
-camera.on('ready', function() {
+var s3Config = {
+  key:'AKIAJ3IDS2XTRQXZWRZQ',
+  secret:'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',
+  bucket:'praxent'
+};
 
-  redLED.high();
-
-  // Take the picture
-  camera.takePicture(function (err, image) {
-
-    if (err)
-      return console.log('Error taking picture:', err);
-
-    var s3Config = {
-      key:'AKIAJ3IDS2XTRQXZWRZQ',
-      secret:'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',
-      bucket:'praxent'
-    };
-
+var snappy = {
+  takePicture: function() {
+    redLED.high();
+    camera.takePicture();
+  },
+  uploadPicture: function(picture) {
     blueLED.high();
-    uploadImage(image, 'officeCurrent.jpg', s3Config, function (err, res) {
+    uploadImage(picture, 'officeCurrent.jpg', s3Config, function (err, res) {
       if (err)
         return console.log('Upload error:', err);
 
       console.log('Image was upload success!');
       redLED.low();
       blueLED.low();
-      camera.disable();
     });
+  }
+}
 
-  });
+// Wait for the camera module to say it's ready
+camera.on('ready', function() {
+
+  // Snap pictures every 10 seconds.
+  setInterval(function () {
+    snappy.takePicture();
+  }, 10000);
+
 });
+
+camera.on('picture', snappy.uploadPicture);
 
 camera.on('error', function(err) {
   console.error(err);
