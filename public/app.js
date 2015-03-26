@@ -18,19 +18,29 @@ $(document).ready(function() {
 
     function checkClimate() {
 
-        $.get("/climate", function (data) {
-            var climate = JSON.parse(data);
-
-            console.log('climate', climate);
-            if (climate) {
-                $('.climate-message').hide();
-                $('.temp').html(climate.temp);
-                $('.humidity').html(climate.humidity);
-            } else {
+        $.ajax({
+            url: '/climate',
+            type: 'GET',
+            success: function(data){
+                console.log('success', data);
+                if (data !== "") {
+                    var climate = JSON.parse(data);
+                    $('.climate-message').hide();
+                    $('.climate').show();
+                    $('.temp').html(climate.temp.toString());
+                    $('.humidity').html(climate.humidity.toString());
+                } else {
+                    console.log('error');
+                    $('.climate').hide();
+                    $('.climate-message').show();
+                }
+            },
+            error: function(data) {
                 $('.climate').hide();
                 $('.climate-message').show();
             }
         });
+
     }
 
     function resetImage() {
