@@ -6,10 +6,10 @@ This camera example takes a picture.
 Take a picture with: `tessel run camera.js`
 *********************************************/
 
-var uploadImage = require('tessel-camera-s3');
 var tessel = require('tessel');
+var uploadImage = require('tessel-camera-s3');
 var camera = require('camera-vc0706').use(tessel.port.A);
-var crypto = require('crypto');
+var climate = require('climate-si7005').use(tessel.port.B);
 
 var blueLED = tessel.led[1];
 var redLED = tessel.led[2];
@@ -29,10 +29,9 @@ var snappy = {
     redLED.low();
     blueLED.high();
     uploadImage(picture, 'officeCurrent.jpg', s3Config, function (err, res) {
-      if (err)
-        return console.log('Upload error:', err);
+      if (err) return console.log('Upload error:', err);
 
-      console.log('Image was upload success!');
+      console.log('Image upload success!');
       blueLED.low();
     });
   }
