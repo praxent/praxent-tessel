@@ -11,6 +11,10 @@
     "tessel": "^0.3.21",
     "tessel-camera-s3": "^1.0.1"
   },
+  "engines": {
+    "node": "0.10.28",
+    "npm": "1.4.14"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Ignigena/praxent-tessel.git"
