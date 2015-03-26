@@ -4,7 +4,6 @@
   "description": "",
   "main": "camera.js",
   "dependencies": {
-    "aws-sdk": "^2.1.19",
     "camera-vc0706": "^0.1.7",
     "tessel": "^0.3.21"
   },

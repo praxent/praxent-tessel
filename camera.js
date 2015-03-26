@@ -11,13 +11,6 @@ tessel run camera.js
 
 var tessel = require('tessel');
 var camera = require('camera-vc0706').use(tessel.port.A);
-var AWS = require('aws-sdk');
-var config = {
-      accessKeyId: 'AKIAJ3IDS2XTRQXZWRZQ',
-      secretAccessKey: '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',
-    };
-
-AWS.config.update(config);
 
 var notificationLED = tessel.led[3]; // Set up an LED to notify when we're taking a picture
 
@@ -36,13 +29,6 @@ camera.on('ready', function() {
     if (err) {
       return console.log('error taking image', err);
     }
-
-    var s3 = new AWS.S3(),
-        params = {
-          Bucket: 'praxent',
-          Key: name,
-          Body: image
-        };
 
     s3.putObject(params, function(err, data) {
 
