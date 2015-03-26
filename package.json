@@ -5,6 +5,7 @@
   "main": "camera.js",
   "dependencies": {
     "camera-vc0706": "^0.1.7",
+    "express": "^4.12.3",
     "tessel": "^0.3.21"
   },
   "devDependencies": {},
