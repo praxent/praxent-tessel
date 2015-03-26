@@ -3,49 +3,47 @@
 
 /*********************************************
 This camera example takes a picture.
-Take a picture with:
-
-tessel run camera.js
-
+Take a picture with: `tessel run camera.js`
 *********************************************/
 
+var uploadImage = require('tessel-camera-s3');
 var tessel = require('tessel');
 var camera = require('camera-vc0706').use(tessel.port.A);
+var crypto = require('crypto');
 
-var notificationLED = tessel.led[3]; // Set up an LED to notify when we're taking a picture
+var blueLED = tessel.led[1];
+var redLED = tessel.led[2];
 
 // Wait for the camera module to say it's ready
 camera.on('ready', function() {
 
-  // Name the image
-  var name = 'picture-' + Math.floor(Date.now()*1000) + '.jpg';
+  redLED.high();
 
-  console.log('READY');
-
-  notificationLED.high();
   // Take the picture
-  camera.takePicture(function(err, image) {
+  camera.takePicture(function (err, image) {
 
-    if (err) {
-      return console.log('error taking image', err);
-    }
+    if (err)
+      return console.log('Error taking picture:', err);
 
-    s3.putObject(params, function(err, data) {
+    var s3Config = {
+      key:'AKIAJ3IDS2XTRQXZWRZQ',
+      secret:'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',
+      bucket:'praxent'
+    };
 
-      if (err) {
-        return console.log('ERROR ', err);
-      }
+    blueLED.high();
+    uploadImage(image, 'officeCurrent.jpg', s3Config, function (err, res) {
+      if (err)
+        return console.log('Upload error:', err);
 
-      console.log("Successfully uploaded data to myBucket/myKey");
-
-      notificationLED.low();
+      console.log('Image was upload success!');
+      redLED.low();
+      blueLED.low();
       camera.disable();
-
-     });
+    });
 
   });
 });
-
 
 camera.on('error', function(err) {
   console.error(err);

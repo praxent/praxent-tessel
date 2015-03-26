@@ -5,7 +5,8 @@
   "main": "camera.js",
   "dependencies": {
     "camera-vc0706": "^0.1.7",
-    "tessel": "^0.3.21"
+    "tessel": "^0.3.21",
+    "tessel-camera-s3": "^1.0.1"
   },
   "devDependencies": {},
   "repository": {
